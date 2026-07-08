@@ -20,9 +20,9 @@ async function startBot() {
     const portinput = await askQuestion('Ведите порт:') 
     const version = await askQuestion('Введите версию Minecraft:')
 
-    createMyBot('Timur', 'tp1', 'l1', host, portinput, version)
-    createMyBot('Timur2', 'tp2', 'l2', host, portinput, version)
-    createDiggerBot('TimurDigger', 'tp4', 'l4', host, portinput, version)
+    createMyBot('Bot_1', 'tp1', 'l1', host, portinput, version)
+    createMyBot('Bot_2', 'tp2', 'l2', host, portinput, version)
+    createDiggerBot('BotDigger', 'tp3', 'l3', host, portinput, version)
 
     rl.close()
 }
@@ -54,7 +54,7 @@ function createMyBot(botName, Trigger, leaveTrigger, customhost, customport, cus
                 bot.chat('Неверный формат')
                 return;
             }
-            bot.chat(`тп на ${x}, ${y}, ${z}`);
+            
             bot.chat(`/tp ${bot.username} ${x} ${y} ${z}`);
         }
         if (message === leaveTrigger) {
@@ -239,10 +239,10 @@ function createDiggerBot(BotName, trigger, leaveTrigger, customhost, customport,
         }
     }
 
-    const pickaxes = ['diamond_pickaxe', 'netherite_pickaxe']
+    const pickaxes = [ 'wooden_pickaxe', 'stone_pickaxe', 'iron_pickaxe', 'golden_pickaxe',  'diamond_pickaxe', 'netherite_pickaxe']
     
     bot.on('chat', async (username, message) => {
-        if (message === '!скинь') {
+        if (message === '!throw') {
             const chestBlockData = bot.registry.blocksByName['chest']
             if (!chestBlockData) return
             const chestBlock = bot.findBlock({ matching: chestBlockData.id, maxDistance: 4 })
@@ -369,7 +369,7 @@ function createDiggerBot(BotName, trigger, leaveTrigger, customhost, customport,
     bot.on('kicked', () => { console.log(`[${BotName}] Кик с сервера`) })
 
     bot.on('chat', (username, message) => {
-        if (message === '!stop' || message === '!стоп') {
+        if (message === '!stop') {
             isMining = false
             bot.pathfinder.stop()
             bot.pathfinder.setGoal(null)
