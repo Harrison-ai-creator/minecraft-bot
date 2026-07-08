@@ -18,11 +18,12 @@ async function startBot() {
     const host = await askQuestion('Введите хост (По умолчанию localhost):') || 'localhost';
 
     const portinput = await askQuestion('Ведите порт:') 
+    
     const version = await askQuestion('Введите версию Minecraft:')
 
-    createMyBot('Bot_1', 'tp1', 'l1', host, portinput, version)
-    createMyBot('Bot_2', 'tp2', 'l2', host, portinput, version)
-    createDiggerBot('BotDigger', 'tp3', 'l3', host, portinput, version)
+    createMyBot('Bot_1', 1,  host, portinput, version)
+    createMyBot('Bot_2', 2, host, portinput, version)
+    createDiggerBot('BotDigger', 3, host, portinput, version)
 
     rl.close()
 }
