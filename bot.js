@@ -28,7 +28,12 @@ async function startBot() {
 }
 
 //---------------Бот афк------------------
-function createMyBot(botName, Trigger, leaveTrigger, customhost, customport, customversion) {
+function createMyBot(botName, botid, customhost, customport, customversion) {
+    
+    const Trigger = `tp${botid}`;
+    const leaveTrigger = `l${botid}`;
+    const minecommand = `mine${botid}`;
+    
     const bot = mineflayer.createBot({
         host: customhost,
         port: customport, 
@@ -39,7 +44,7 @@ function createMyBot(botName, Trigger, leaveTrigger, customhost, customport, cus
     let forcedQuit = false;
 
     bot.once('spawn', () => {
-        bot.chat('привет');
+        bot.chat('Афк бот успешно зашел.');
     });
 
     bot.on('chat', (username, message) => {
@@ -99,7 +104,12 @@ function createMyBot(botName, Trigger, leaveTrigger, customhost, customport, cus
 //--------------------------------------------------------
 
 //--------------- БОТ ШАХТЕР -------------------
-function createDiggerBot(BotName, trigger, leaveTrigger, customhost, customport, customversion) {
+function createDiggerBot(BotName, botid, customhost, customport, customversion) {
+
+    const trigger = `tp${botid}`;
+    const leaveTrigger = `l${botid}`;
+    const minecommand = `mine${botid}`;
+    
     const bot = mineflayer.createBot({
         host: customhost,
         port: customport,
@@ -122,7 +132,7 @@ function createDiggerBot(BotName, trigger, leaveTrigger, customhost, customport,
     })
 
     bot.on('spawn', () => {
-        bot.chat(`Бот шахтер успешно зашел. Напиши "mine${trigger.replace('tp', '')} [название_блока_англ]" `)
+        bot.chat(`Бот шахтер ${BotName} зашел. Команда ${minecommand} [блок] `)
         if (bot.autoEat) {
             bot.autoEat.options = {
                 priority: 'foodPoints',
@@ -132,8 +142,12 @@ function createDiggerBot(BotName, trigger, leaveTrigger, customhost, customport,
         }
     })
 
-    bot.on('autoeat_started', () => { console.log(`[${BotName}] Кушаю`) })
-    bot.on('autoeat_stopped', () => { console.log(`[${BotName}] Покушал`) })
+    bot.on('autoeat_started', () => {
+        console.log(`[${BotName}] Кушаю`) 
+    })
+    bot.on('autoeat_stopped', () => {
+        console.log(`[${BotName}] Покушал`) 
+    })
     
     bot.on('health', () => {
         if (bot.food === 20) bot.autoEat.disableAuto()
