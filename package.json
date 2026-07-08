@@ -1,0 +1,21 @@
+{
+  "name": "node_js_test",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@nxg-org/mineflayer-auto-eat": "^2.4.1",
+    "minecraft-data": "^3.111.0",
+    "mineflayer": "^4.37.1",
+    "mineflayer-auto-eat": "^3.1.0",
+    "mineflayer-pathfinder": "^2.4.5",
+    "mineflayer-tool": "^1.2.0",
+    "prismarine-viewer": "^1.33.0"
+  }
+}
