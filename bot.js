@@ -32,7 +32,7 @@ async function startBot() {
 function createMyBot(botName, botid, customhost, customport, customversion) {
     
     const Trigger = `tp${botid}`;
-    const leaveTrigger = `l${botid}`;
+    const leaveTrigger = `leave${botid}`;
     const minecommand = `mine${botid}`;
     
     const bot = mineflayer.createBot({
